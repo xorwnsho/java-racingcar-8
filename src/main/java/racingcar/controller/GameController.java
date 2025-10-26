@@ -25,14 +25,14 @@ public class GameController {
         // ----- 3번 기능 -----
         // 이름이 5글자 이상이면 IllegalArgumentException을 터트림.
         validateCarNames(carNames);
-        // ---------------------------------------
-
-        // ---------------------------------------
 
         // ----- 2번 기능 -----
+        // 시도할 횟수 입력받기
         String tryCountInput = inputView.readTryCount();
-        System.out.println(tryCountInput);
-        // ---------------------------------------
+
+        // ----- 4번 기능 -----
+        // 시도 횟수가 숫자가 아닐 시 IllegalArgumentException
+        int realCount = validateTryCountInput(tryCountInput);
     }
 
     public List<String> splitCarNames(String input) {
@@ -47,4 +47,15 @@ public class GameController {
             }
         }
     }
+
+    public int validateTryCountInput(String tryCountInput) {
+        int count;
+        try{
+            count = Integer.parseInt(tryCountInput);
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("시도 횟수는 숫자여야 합니다.");
+        }
+        return count;
+    }
+
 }

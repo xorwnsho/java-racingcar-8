@@ -45,7 +45,7 @@ class GameControllerTest {
     }
 
     @Test
-    @DisplayName("3번 기능: 자동차 이름 5자 초과 시 IllegalArgumentException")
+    @DisplayName("기능 3 : 자동차 이름 5자 초과 시 IllegalArgumentException")
     void nameLengthValidation() {
         //given
         String input = "ohjuntaek, woni, jun";
@@ -57,5 +57,17 @@ class GameControllerTest {
         assertThatThrownBy(() -> gameController.validateCarNames(inputList))
           .isInstanceOf(IllegalArgumentException.class)
           .hasMessageContaining("자동차 이름은 5자 이하만 가능합니다.");
+    }
+
+    @Test
+    @DisplayName("기능 4 : 시도 횟수가 숫자가 아닐 시 IllegalArgumentException")
+    void tryCountInputIntValidation(){
+        //given
+        String input = "test";
+
+        //then
+        assertThatThrownBy(() -> gameController.validateTryCountInput(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("시도 횟수는 숫자여야 합니다.");
     }
 }
