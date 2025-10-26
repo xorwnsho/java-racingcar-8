@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 class GameControllerTest {
 
     private GameController gameController;
@@ -42,4 +44,18 @@ class GameControllerTest {
         assertThat(result).containsExactly("pobi");
     }
 
+    @Test
+    @DisplayName("3번 기능: 자동차 이름 5자 초과 시 IllegalArgumentException")
+    void nameLengthValidation() {
+        //given
+        String input = "ohjuntaek, woni, jun";
+
+        //when
+        List<String> inputList = gameController.splitCarNames(input);
+
+        //then
+        assertThatThrownBy(() -> gameController.validateCarNames(inputList))
+          .isInstanceOf(IllegalArgumentException.class)
+          .hasMessageContaining("자동차 이름은 5자 이하만 가능합니다.");
+    }
 }
