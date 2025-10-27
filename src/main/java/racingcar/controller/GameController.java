@@ -3,6 +3,7 @@ package racingcar.controller;
 import racingcar.domain.Car;
 import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,9 +11,11 @@ import java.util.stream.Collectors;
 
 public class GameController {
     private final InputView inputView;
+    private final OutputView outputView;
 
     public GameController() {
         this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void run() {
@@ -38,9 +41,12 @@ public class GameController {
         // ----- 5번 기능 -----
         RacingGame racingGame = new RacingGame(cars);
 
-        System.out.println("\n실행 결과");
+        outputView.printExecutionResultHeader();
         for (int i = 0; i < realCount; i++) {
             racingGame.playRound();
+
+            // ----- 6번 기능 -----
+            outputView.printRoundResult(racingGame.getCars());
         }
     }
 
@@ -50,9 +56,9 @@ public class GameController {
 
     public int validateTryCountInput(String tryCountInput) {
         int count;
-        try{
+        try {
             count = Integer.parseInt(tryCountInput);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("시도 횟수는 숫자여야 합니다.");
         }
         return count;

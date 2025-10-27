@@ -7,7 +7,7 @@ public class Car {
     private final String name;
     private int position = 0;
 
-    public Car(String name){
+    public Car(String name) {
         String trimmedName = name.trim();
         validateName(trimmedName);
         this.name = trimmedName;
@@ -15,14 +15,14 @@ public class Car {
 
     // 3번 기능을 Car 클래스로 리펙토링
     private void validateName(String name) {
-        if(name.isEmpty() || name.length() > MAX_MOVE_LENGTH){
+        if (name.isEmpty() || name.length() > MAX_MOVE_LENGTH) {
             throw new IllegalArgumentException("자동차 이름은 1자 이상 5자 이하만 가능합니다.");
         }
     }
 
     // ----- 5번 기능: 전진 또는 멈춤 ------
-    public void move(int randomNumber){
-        if(randomNumber >= MOVE_CONDITION){
+    public void move(int randomNumber) {
+        if (randomNumber >= MOVE_CONDITION) {
             this.position++;
         }
     }
