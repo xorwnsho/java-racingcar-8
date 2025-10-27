@@ -48,6 +48,10 @@ public class GameController {
             // ----- 6번 기능 -----
             outputView.printRoundResult(racingGame.getCars());
         }
+
+        // ----- 7번 기능 -----
+        List<Car> winners = racingGame.getWinners();
+        outputView.printWinners(winners);
     }
 
     public List<String> splitCarNames(String input) {
